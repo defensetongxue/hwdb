@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD:
+      POSTGRES_USER: gy
+      POSTGRES_DB: order
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/data/postgres
+      - ./packages/mock/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  adminer:
+    image: adminer
+    restart: always
+    environment:
+      ADMINER_PLUGINS: "frames"
+    ports:
+      - "54188:8080"
+  
+  app:
+    depends_on:
+      - db
+    build: .
+    restart: unless-stopped
+    ports:
+      - "$PORT:$PORT"
+    volumes:
+      - log:/dbassignment/packages/backend/log
+
+volumes:
+  postgres:
+  log:
