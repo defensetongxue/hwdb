@@ -9,9 +9,6 @@ async function login_click(){
     phone,
     password,
   })
-  .then(function (response) {
-    console.log(response);
-  })
   const { token, role } = data;
   console.log(token)
   alert(role)
