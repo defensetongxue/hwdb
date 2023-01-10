@@ -2,9 +2,8 @@ import { env } from "node:process";
 import { FastifyReply, FastifyRequest } from "fastify";
 import fp from "fastify-plugin";
 import fastifyJwt from "@fastify/jwt";
-import type { Role } from "./fastify-jwt";
 
-async function verifyJwt(req: FastifyRequest, rep: FastifyReply) {
+async function verifyJwt(req, rep) {
   try {
     await req.jwtVerify();
   } catch (err) {
@@ -14,7 +13,7 @@ async function verifyJwt(req: FastifyRequest, rep: FastifyReply) {
 
 export default fp(async function (fastify) {
   fastify.decorate("verifyJwt", verifyJwt);
-  fastify.decorate("signJwt", (id: number, role: Role) => {
+  fastify.decorate("signJwt", (id, role) => {
     return fastify.jwt.sign({ id, role });
   });
   await fastify.register(fastifyJwt, {

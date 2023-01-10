@@ -75,6 +75,7 @@ function showOrderList(orders) {
     状态：${order.order_state}
     金额:${order.order_value}
     <button class='btn btn-light'  onclick='showOrder(${order.order_id})'>查看详情</button>
+    <button class='btn btn-light'  onclick='onNext(${order.order_id})'>下一阶段</button>
             </li>`)
   }
 }
@@ -133,6 +134,9 @@ window.updateHealth= async function updateHealth() {
     cour_covid: new Date(covid).toISOString(),
   });
   window.location.reload();
+}
+async function onNext(id) {
+  await axios.post(`${HOST}/order/${id}/next`);
 }
 
 const userInfo = await getUserInfo()

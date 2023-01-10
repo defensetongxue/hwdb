@@ -16,10 +16,10 @@ const SCHEMA_HEALTH = createSchema({
     required: ["cour_temperature", "cour_covid"],
   },
   response: J_SCHEMA_SUCCESS,
-} as const);
+} );
 
 export default fp(async (inst) => {
-  const fastify = inst.withTypeProvider<JsonSchemaToTsProvider>();
+  const fastify = inst.withTypeProvider();
   fastify.get(
     "/orders/free",
     {
@@ -33,7 +33,7 @@ export default fp(async (inst) => {
           message: "Only couriers can view free orders.",
         });
       }
-      const { rows } = await query<SqlOrderDetailed>(
+      const { rows } = await query(
         `
 SELECT order_id, cust_id, cust_name, shop_id, shop_name, shop_location, cour_id, order_value, order_begin_time, order_destination, order_state
     FROM shop NATURAL JOIN orders NATURAL JOIN customer
@@ -71,7 +71,7 @@ UPDATE courier
         });
       }
       return {
-        success: true as const,
+        success: true,
       };
     }
   );

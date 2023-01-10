@@ -8,14 +8,14 @@ const pool = new PG.Pool({
   database: env.POSTGRES_DB,
 });
 
-export async function query<R extends QueryResultRow = Record<string, unknown>>(
-  text: string,
-  param: unknown[] = []
+export async function query(
+  text,
+  param
 ) {
   return pool.query<R>(text, param);
 }
 
-export async function transaction(op: (client: PG.PoolClient) => Promise<void>) {
+export async function transaction(op) {
   const client = await pool.connect();
   await client.query("BEGIN;");
   try {

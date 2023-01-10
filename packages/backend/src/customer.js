@@ -29,8 +29,7 @@ const SCHEMA_SC_GET = createSchema({
       additionalProperties: false,
     },
   },
-} as const);
-type SqlScGet = FromSchema<typeof SCHEMA_SC_GET.response.default.items>;
+} );
 
 const SCHEMA_SC_POST = createSchema({
   body: {
@@ -47,10 +46,10 @@ const SCHEMA_SC_POST = createSchema({
     additionalProperties: false,
   },
   response: J_SCHEMA_SUCCESS,
-} as const);
+} );
 
 export default fp(async function (ins) {
-  const fastify = ins.withTypeProvider<JsonSchemaToTsProvider>();
+  const fastify = ins.withTypeProvider();
   fastify.post(
     "/customer/car/insert",
     {
@@ -89,7 +88,7 @@ UPDATE shopping_car
         );
       }
       return {
-        success: true as const,
+        success: true,
       };
     }
   );
@@ -107,7 +106,7 @@ UPDATE shopping_car
           message: "Only customer can set shopping car.",
         });
       }
-      const { rows: oldRows, rowCount } = await query<{ car_num: number }>(
+      const { rows: oldRows, rowCount } = await query(
         `
 SELECT car_num
   FROM shopping_car
@@ -139,7 +138,7 @@ UPDATE shopping_car
       }
 
       return {
-        success: true as const,
+        success: true ,
       };
     }
   );
@@ -156,7 +155,7 @@ UPDATE shopping_car
           message: "Only customer can get shopping car.",
         });
       }
-      const { rows } = await query<SqlScGet>(
+      const { rows } = await query(
         `
 SELECT dish_id, dish_name, shop_id, shop_name, dish_value, car_num
     FROM shop NATURAL JOIN dish NATURAL JOIN (
