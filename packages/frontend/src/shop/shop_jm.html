@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title>郭易-1900013009-数据库大作业-商店界面</title>
+</head>
+
+<body>
+
+  <main class="main" role="main">
+    <div class="container">
+      <div class="row">
+        <div class="offset-md-3 col-md-6">
+          <h1>登录成功</h1>
+              <h2>用户信息</h2>
+              <ul id="info_list" class="am-list am-list-static">
+                <li><input id="CAna" placeholder="新账号"><input id="CAp" placeholder="密码"><button class="btn btn-light" onclick="changePhone()">修改账号</button></li>
+                <li><input id="CPop" placeholder="旧密码"><input id="CPnp" placeholder="新密码"><button class="btn btn-light" onclick="changePassword()">修改密码</button></li>
+              </ul>
+              <h2>修改菜品</h2>
+              <ul id="dish_list" class="am-list am-list-static">
+              </ul>
+              <div>
+                <h2>新增菜品</h2>
+                <label>菜名</label>
+                <input class="form-control" id="addDishName" placeholder="请输入新增菜品名称">
+                <label>价格</label>
+                <input class="form-control" id="addDishValue" placeholder="请输入新增菜品价格">
+                <button type="submit" class="btn btn-success btn-block" onclick= "addDish()">增加</button>
+              </div>
+
+              <h2>订单信息</h2>
+              <ul id="order_list" class="am-list am-list-static"></ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <script src="./shop_jm.js" type="module"></script>
+</body>
+
+</html>

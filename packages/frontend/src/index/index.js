@@ -10,7 +10,10 @@ async function login_click(){
     password,
   })
   const { token, role } = data;
-  console.log(token)
-  alert(role)
+  // const data_str=JSON.stringify(data)
+  const data_str=new URLSearchParams(data).toString()
+  url=`../${role}/${role}_jm.html?${data_str}`
+  // alert(url)
+  window.location.href = url
   
 }
